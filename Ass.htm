@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Global Reset and Base Styles */
+    * {
+      box-sizing: border-box; /* Ensures padding & border are included in total width/height */
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f4f6fb;
+      color: #222;
+    }
+
+    .page-wrapper {
+      max-width: 1000px;    /* Prevents content from stretching too wide on large screens */
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* 1. Header Section */
+    header {
+      height: auto; /* Can grow with content */
+      padding: 20px;
+      background-color: #1e3a8a;
+      color: #ffffff;
+      text-align: center;
+      outline: 3px solid #0ea5e9; /* Outline to highlight header area */
+      outline-offset: 4px;
+      border-radius: 8px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    header h2 {
+      margin: 4px 0 0;
+      font-size: 1.2rem;
+      font-weight: normal;
+      opacity: 0.9;
+    }
+
+    /* 2. Student Profile Card */
+    .profile-section {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .profile-card {
+      width: 100%;           /* Full width on small screens */
+      max-width: 600px;      /* ✅ Required: max-width 600px */
+      margin: auto;          /* ✅ Center horizontally */
+      padding: 20px;         /* ✅ Box model padding */
+      background-color: #ffffff;
+      border: 1px solid #e5e7eb;  /* ✅ Border for box model */
+      border-radius: 12px;        /* Rounded corners */
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+      outline: 3px solid #6366f1; /* ✅ Outline for emphasis */
+      outline-offset: 6px;        /* ✅ Outline offset */
+      min-height: 260px;          /* ✅ Ensure minimum height */
+    }
+
+    .profile-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .profile-photo {
+      flex: 0 0 140px;
+      max-width: 140px;
+    }
+
+    .profile-photo img {
+      width: 100%;      /* ✅ Responsive image width */
+      height: auto;     /* ✅ Maintain aspect ratio */
+      display: block;
+      border-radius: 50%;
+      border: 3px solid #1e3a8a;
+    }
+
+    .profile-info {
+      flex: 1 1 200px;
+      min-width: 0;
+    }
+
+    .profile-info h3 {
+      margin: 0 0 8px;
+      font-size: 1.4rem;
+      color: #111827;
+    }
+
+    .profile-info p {
+      margin: 4px 0;
+      font-size: 0.95rem;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #4b5563;
+    }
+
+    .profile-bio {
+      margin-top: 16px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #374151;
+    }
+
+    /* 3. General Section Titles */
+    .section-title {
+      margin: 32px 0 12px;
+      font-size: 1.2rem;
+      color: #1f2933;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 4px;
+    }
+
+    /* 5. Outline Demonstration Boxes */
+    .outline-demo-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .outline-box {
+      flex: 1 1 120px;
+      min-width: 120px;
+      padding: 10px;
+      text-align: center;
+      background-color: #ffffff;
+      border: 1px solid #d1d5db;
+      font-size: 0.85rem;
+    }
+
+    .outline-dotted {
+      outline-style: dotted;
+      outline-width: 3px;
+      outline-color: #2563eb;
+    }
+
+    .outline-dashed {
+      outline: 3px dashed #16a34a; /* ✅ shorthand */
+    }
+
+    .outline-solid {
+      outline: 3px solid #f97316;
+    }
+
+    .outline-positive-offset {
+      outline: 3px solid #ec4899;
+      outline-offset: 6px; /* ✅ positive offset pushes outline outward */
+    }
+
+    .outline-negative-offset {
+      outline: 3px solid #9333ea;
+      outline-offset: -4px; /* ✅ negative offset moves outline inside */
+    }
+
+    /* 6. auto vs initial demonstration */
+    .auto-initial-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .ai-box {
+      flex: 1 1 250px;
+      min-width: 220px;
+      padding: 12px;
+      background-color: #ffffff;
+      border: 1px solid #d1d5db;
+      font-size: 0.9rem;
+    }
+
+    .auto-box {
+      height: auto; /* ✅ height determined by content */
+    }
+
+    .initial-box {
+      height: initial; /* ✅ resets to default (auto for block elements in most browsers) */
+      max-height: 120px; /* Limit height to show difference with overflow */
+      overflow-y: auto;
+    }
+
+    /* 7. Rounded Outline Example */
+    .rounded-outline {
+      margin-top: 16px;
+      padding: 14px;
+      background-color: #eff6ff;
+      border-radius: 20px;         /* ✅ Rounded corners */
+      outline: 3px solid #3b82f6;  /* ✅ Outline with border-radius */
+      outline-offset: 4px;
+      font-size: 0.9rem;
+    }
+
+    /* Utility box model example (for comment calculation reference) */
+    .box-model-example {
+      width: 400px;
+      padding: 20px;
+      border: 5px solid black;
+      margin-top: 16px;
+      background-color: #ffffff;
+      max-width: 100%; /* ✅ Prevent horizontal scrolling on small screens */
+    }
+
+    /*
+      4. Box Model Calculation Task (content-box, default):
+      width: 400px;
+      padding: 20px;  (left + right = 40px)
+      border: 5px;    (left + right = 10px)
+
+      Total horizontal width = content width + left padding + right padding + left border + right border
+                             = 400px + 20px + 20px + 5px + 5px
+                             = 460px total width
+    */
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.4rem;
+      }
+
+      .profile-card {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- 1. Header Section -->
+    <header>
+      <h1>ABC Institute of Technology</h1>
+      <h2>Student Profile</h2>
+    </header>
+
+    <!-- 2. Student Profile Card -->
+    <section class="profile-section">
+      <article class="profile-card">
+        <div class="profile-top">
+          <div class="profile-photo">
+            <!-- You can replace src with actual student image -->
+            <img src="https://via.placeholder.com/300x300.png?text=Student+Photo" alt="Student Photo">
+          </div>
+          <div class="profile-info">
+            <h3>John Doe</h3>
+            <p><span class="label">USN:</span> 1AB22CS001</p>
+            <p><span class="label">Branch:</span> Computer Science and Engineering</p>
+            <p><span class="label">Email:</span> john.doe@example.edu</p>
+          </div>
+        </div>
+        <p class="profile-bio">
+          John is a final-year Computer Science student with a strong interest in full-stack web development,
+          open-source contributions, and cloud computing. He loves participating in coding competitions and
+          hackathons and enjoys working on real-world projects that solve meaningful problems.
+        </p>
+      </article>
+    </section>
+
+    <!-- 5. Outline Demonstration -->
+    <h3 class="section-title">Outline Demonstration</h3>
+    <div class="outline-demo-container">
+      <div class="outline-box outline-dotted">
+        dotted outline
+      </div>
+      <div class="outline-box outline-dashed">
+        dashed outline
+      </div>
+      <div class="outline-box outline-solid">
+        solid outline
+      </div>
+      <div class="outline-box outline-positive-offset">
+        positive offset outline
+      </div>
+      <div class="outline-box outline-negative-offset">
+        negative offset outline
+      </div>
+    </div>
+
+    <!-- 6. auto vs initial -->
+    <h3 class="section-title">auto vs initial (Height)</h3>
+    <div class="auto-initial-container">
+      <div class="ai-box auto-box">
+        <strong>height: auto;</strong>
+        <p>
+          This box uses <code>height: auto;</code>, so its height automatically grows to fit all of the content
+          without any internal scrolling. Add more text here to see that the box keeps expanding in height as
+          necessary to show the full paragraph without clipping or scrollbars.
+        </p>
+      </div>
+      <div class="ai-box initial-box">
+        <strong>height: initial; (with max-height)</strong>
+        <p>
+          This box uses <code>height: initial;</code> combined with a <code>max-height</code> of 120px.
+          When the content becomes taller than 120px, the box stops growing and a vertical scrollbar appears.
+          This visually demonstrates the effect of a constrained height together with the initial value.
+        </p>
+      </div>
+    </div>
+
+    <!-- 7. Rounded Outline -->
+    <div class="rounded-outline">
+      This element demonstrates a combination of <code>border-radius</code> and <code>outline</code> with
+      <code>outline-offset</code>. Even though the outline itself is not rounded, it visually follows
+      the rounded shape of the element and helps call attention to important information.
+    </div>
+
+    <!-- 4. Box Model Example (for calculation) -->
+    <h3 class="section-title">Box Model Example</h3>
+    <div class="box-model-example">
+      This box is configured exactly as in the calculation comment:
+      <code>width: 400px; padding: 20px; border: 5px solid black;</code>.
+      When using the default <code>content-box</code> box-sizing, its total width becomes 460px
+      (400px content + 40px padding + 10px border).
+    </div>
+  </div>
+</body>
+</html>
